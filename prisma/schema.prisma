@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model topic_table{ 
+  id Int @id
+  idx String @unique
+  name String
+  topic_type String
+  topic_depiction String @db.VarChar(250)
+  parent_topic Int? @db.UnsignedTinyInt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_by String 
+  deleted_at DateTime?
+ }
+
+model post_table {
+  id        Int      @id @unique(sort: Desc) @default(autoincrement())
+  post_type Int
+  title String @db.VarChar(50)
+  hidden Boolean  @default(false)
+  is_edit Boolean @default(false)
+  //is_ref Boolean @default(false)
+  //ref_post Int?  //이런거 넣을시간없음
+  post_title     String   @db.VarChar(200)
+  contents   post_content[]
+  author_name String
+  author_id  Int?
+  published DateTime @default(now())
+  updated_at DateTime @updatedAt
+  //tag String @db.Text @index()
+}
+model post_content {
+  id        Int      @id @default(autoincrement())
+  post post_table @relation(fields: [post_id], references: [id])
+  rep_id Int? @db.UnsignedTinyInt
+  post_id  Int
+  ip String? @db.VarChar(39)
+  is_image Boolean
+  is_edit Boolean
+  content String @db.MediumText()
+  hidden Boolean @default(false)
+  published DateTime @default(now())
+  edited DateTime @updatedAt
+  deleted_by String 
+  deleted_at DateTime?
+  hit Int @default(0)
+  like Int @default(0)
+  //favor Int?
+  //score Float @default(0.00) //시간에따른 감소
+  //spam_level Int? //스팸단어 필터링에 따른
+
+  @@fulltext([content])
+}
+model user {
+  user_id     Int      @id @default(autoincrement()) @unique
+  user_name   String  @db.VarChar(50)
+  auth_type  Int 	@db.UnsignedTinyInt
+  role_type String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
+}
+
+model post_image{
+  idx Bytes @id @default(dbgenerated("(uuid_to_bin(uuid()))")) @db.Binary(16)
+  origin_name String
+  image_size Int
+  name String 
+  extension String
+  path_type String
+  path String 
+  width Int?
+  height Int?
+  post_content_id Int //따로 외래키 설정 안하겠음
+  topic_id Int
+  
+}
+
+model user_profile{
+  user_id Int @unique
+  custom_name String @unique @db.VarChar(12)
+  custom_memo String? @db.VarChar(500)
+  updated_at DateTime @updatedAt
+
+  @@id([user_id])
+}
+
+// model auth_password{
+//   //idx Int @default(autoincrement())
+//   user_id Int @unique
+//   password String @db.Char(64)
+//   //nacl ㄴ
+//   //pv
+  
+//   @@id([user_id])
+// } 기본기능 완성까지 보류
