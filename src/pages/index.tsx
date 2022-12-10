@@ -7,7 +7,7 @@ export default function Home() {
     <div>
       <Head>
         <title>test Next App</title>
-        <meta name="description" content="clonemo main Page" />
+        <meta name="description" content="clonemo 메인페이지" />
       </Head>
 
       <main>

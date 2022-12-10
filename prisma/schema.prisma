@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model topic_table{ 
+model TopicTable{ 
   id Int @id
   idx String @unique
   name String
@@ -22,27 +22,32 @@ model topic_table{
   updated_at DateTime @updatedAt
   deleted_by String 
   deleted_at DateTime?
+
+  @@map("topic_table")
  }
 
-model post_table {
+model PostTable {
   id        Int      @id @unique(sort: Desc) @default(autoincrement())
   post_type Int
   title String @db.VarChar(50)
   hidden Boolean  @default(false)
   is_edit Boolean @default(false)
   //is_ref Boolean @default(false)
-  //ref_post Int?  //이런거 넣을시간없음
-  post_title     String   @db.VarChar(200)
-  contents   post_content[]
+  //ref_post Int?  //넣을시간 없을듯
+  PostTable     String   @db.VarChar(200) @map("post_table")
+  contents   PostContent[]
   author_name String
   author_id  Int?
   published DateTime @default(now())
   updated_at DateTime @updatedAt
   //tag String @db.Text @index()
+  
+  @@map("post_table")
 }
-model post_content {
+
+model PostContent {
   id        Int      @id @default(autoincrement())
-  post post_table @relation(fields: [post_id], references: [id])
+  post PostTable @relation(fields: [post_id], references: [id])
   rep_id Int? @db.UnsignedTinyInt
   post_id  Int
   ip String? @db.VarChar(39)
@@ -61,8 +66,9 @@ model post_content {
   //spam_level Int? //스팸단어 필터링에 따른
 
   @@fulltext([content])
+  @@map("post_content")
 }
-model user {
+model User {
   user_id     Int      @id @default(autoincrement()) @unique
   user_name   String  @db.VarChar(50)
   auth_type  Int 	@db.UnsignedTinyInt
@@ -70,9 +76,11 @@ model user {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   deleted_at DateTime?
+
+  @@map("user")
 }
 
-model post_image{
+model PostImage{
   idx Bytes @id @default(dbgenerated("(uuid_to_bin(uuid()))")) @db.Binary(16)
   origin_name String
   image_size Int
@@ -85,18 +93,20 @@ model post_image{
   post_content_id Int //따로 외래키 설정 안하겠음
   topic_id Int
   
+  @@map("post_image")
 }
 
-model user_profile{
+model UserProfile{
   user_id Int @unique
   custom_name String @unique @db.VarChar(12)
   custom_memo String? @db.VarChar(500)
   updated_at DateTime @updatedAt
 
   @@id([user_id])
+  @@map("user_profile")
 }
 
-// model auth_password{
+// model AuthPassword{
 //   //idx Int @default(autoincrement())
 //   user_id Int @unique
 //   password String @db.Char(64)
@@ -104,4 +114,5 @@ model user_profile{
 //   //pv
   
 //   @@id([user_id])
-// } 기본기능 완성까지 보류
+//   @@map("auth_password")
+// } //기본기능 완성까지 보류
