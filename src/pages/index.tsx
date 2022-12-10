@@ -4,18 +4,18 @@ import styles from 'styles/Home.module.scss'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>test Next App</title>
-        <meta name="description" content="이것은 테스트중입니다." />
+        <meta name="description" content="clonemo main Page" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
        
          
       </main>
 
-      <footer className={styles.footer}>
+      <footer>
         
       </footer>
     </div>
