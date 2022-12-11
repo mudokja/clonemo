@@ -1,15 +1,15 @@
-import Head from 'next/head'
+'use client';
 
 export default function Home() {
   return (
     <div>
-      <Head>
+      {/* <Head>
         <title>test Next App</title>
         <meta name="description" content="clonemo 메인페이지" />
-      </Head>
+      </Head> */}
 
       <main>
-       
+       엉엉 이게뭐야
          
       </main>
 
