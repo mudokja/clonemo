@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 const TopHeader =()=>{
     const logoColor = useColorModeValue('100','0')
     const router = useRouter()
-    console.log('호출됨');
+    console.log('상단 헤더 호출됨');
     const handleLogoClick = () => {
         router.push('/');
     }

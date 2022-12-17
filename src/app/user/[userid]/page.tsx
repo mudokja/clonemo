@@ -1,11 +1,15 @@
-async function getArtist(userid) {
-  const res = await fetch(`https://api.example.com/artist/${userid}`);
+async function getArtist(userid: any) {
+  const res = await fetch(`http://localhost:3000/api/${userid}`);
   return res.json();
 }
 
-export default function Page() {
+export default async function Page({params:{userid}}) {
     // Forward fetched data to your Client Component
+    const user = await getArtist(userid)
     return (
-      <p>유저정보로딩</p>
+      <><p>유저정보로딩</p>
+      <p>유저 아이디 :{user.id}</p>
+      <p>유저 정보 {user.name}</p>
+      </>
     )
   }
