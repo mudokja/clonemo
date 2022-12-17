@@ -1,6 +1,4 @@
 "use client"
-
-import React from 'react';
 import { Box, Flex, Spacer, useColorModeValue } from '@chakra-ui/react'
 import ColorModeButton from './ColorModeButton';
 import Image from 'next/image';
@@ -10,9 +8,9 @@ import { useRouter } from 'next/navigation';
 const TopHeader =()=>{
     const logoColor = useColorModeValue('100','0')
     const router = useRouter()
-
+    console.log('호출됨');
     const handleLogoClick = () => {
-        router.push('/')
+        router.push('/');
     }
     return(
     <Box>

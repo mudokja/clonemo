@@ -4,6 +4,3 @@ type userState = {
 }
 
 export{}
-
-
-function

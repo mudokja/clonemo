@@ -1,18 +1,19 @@
-"use client"
-import { ChakraProvider } from '@chakra-ui/react'
+import ThemeProvider from '../components/context/ThemeProvider';
 import TopHeader from '../components/TopHeader';
-import theme from '../styles/theme'
+import { cookies } from 'next/headers';
+import { RequestCookie } from 'next/dist/server/web/spec-extension/cookies';
 
 export default function RootLayout({ children }: {
     children: React.ReactNode;
   }) {
+    
     return (
       <html lang="kr">
         <body>
-        <ChakraProvider theme={theme}>
+        <ThemeProvider>
           <TopHeader/>
-          {children}
-        </ChakraProvider>
+            {children}
+        </ThemeProvider>
         </body>
       </html>
     );
