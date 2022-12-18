@@ -11,7 +11,7 @@ export default function PostForm() {
     setValue(inputValue)
   }
   return (
-    <Box maxW={['3xs','2xs','xs','sm']} pos={'sticky'} left={'100%'} top={500}>
+    <Box maxW={['3xs','2xs','xs','sm']} pos={'relative'}>
     <Text fontSize='md'>
       임시 form 영역
     </Text>
