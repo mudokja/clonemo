@@ -54,8 +54,9 @@ const spacing = {
     96: '24rem',
   },
 }
+console.log('테마읽힘')
 
 const theme = extendTheme({config , breakpoints, ...spacing, 
   components: { Divider: dividerTheme },
-})
+}) 
 export default theme

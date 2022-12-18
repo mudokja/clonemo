@@ -6,8 +6,8 @@ import PostForm from "../../../components/PostForm";
 
 export default function Page() {
   return (
-    <Flex>
+    <Box>
       <PostForm/>
-    </Flex>
+    </Box>
   )
 }

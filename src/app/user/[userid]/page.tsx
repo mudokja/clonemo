@@ -1,10 +1,11 @@
+
 async function getArtist(userid: any) {
-  const api='v1';
+  const api=process.env.V_API
   const res = await fetch(`http://localhost:3000/api/${api}/user/${userid}`);
   return res.json();
 }
 
-export default async function Page({params:{userid}}) {
+export default async function Page({params:{userid}}: any) :Promise<JSX.Element> {
     // Forward fetched data to your Client Component
     const user = await getArtist(userid)
     return (
