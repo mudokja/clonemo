@@ -10,10 +10,12 @@ export default function RootLayout({ children }: {
     return (
       <html lang="kr">
         <body>
-        <ThemeProvider>
+          <main>
+          <ThemeProvider>
           <TopHeader/>
             {children}
-        </ThemeProvider>
+          </ThemeProvider>
+          </main>
         </body>
       </html>
     );

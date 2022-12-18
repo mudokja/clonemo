@@ -5,6 +5,7 @@ import Image from 'next/image';
 import clonemosvg from 'public/clonemo.svg'
 import { useRouter } from 'next/navigation';
 import TextSearch from './TextSearch';
+import NavSide from './NavSide';
 
 const TopHeader =()=>{
     const logoColor = useColorModeValue('100','0')
@@ -16,6 +17,7 @@ const TopHeader =()=>{
     return(
     <Box>
         <Flex>
+        <NavSide/>
         <Box as='button' onClick={handleLogoClick} w='150px' h='50px'>
             <Image alt={'logo'} src={clonemosvg} priority style={{filter:`invert(${logoColor}%)`}} />
         </Box>

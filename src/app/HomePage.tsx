@@ -5,13 +5,10 @@ import NavSide from "../components/NavSide";
 
 export default function HomeaPage() {
   return (
-    <main>
-      <Flex >
-        <NavSide/>
+      <Flex>
         <Box>
         엉엉 이게뭐야
         </Box>
       </Flex>
-    </main>
   )
 }
