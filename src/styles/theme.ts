@@ -1,6 +1,7 @@
 "use client";
 
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react"
+import { dividerTheme } from "./defaultDivider";
 
 const config: ThemeConfig = {
   initialColorMode: "light",
@@ -54,5 +55,7 @@ const spacing = {
   },
 }
 
-const theme = extendTheme({config , breakpoints, ...spacing })
+const theme = extendTheme({config , breakpoints, ...spacing, 
+  components: { Divider: dividerTheme },
+})
 export default theme

@@ -4,6 +4,7 @@ import ColorModeButton from './ColorModeButton';
 import Image from 'next/image';
 import clonemosvg from 'public/clonemo.svg'
 import { useRouter } from 'next/navigation';
+import TextSearch from './TextSearch';
 
 const TopHeader =()=>{
     const logoColor = useColorModeValue('100','0')
@@ -19,7 +20,7 @@ const TopHeader =()=>{
             <Image alt={'logo'} src={clonemosvg} priority style={{filter:`invert(${logoColor}%)`}} />
         </Box>
         <Spacer />
-        <Box>뭔가있음</Box>
+        <Box><TextSearch/></Box>
         <Spacer />
         <Box>로그인</Box>
         <ColorModeButton/>

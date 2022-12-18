@@ -1,5 +1,6 @@
 async function getArtist(userid: any) {
-  const res = await fetch(`http://localhost:3000/api/${userid}`);
+  const api='v1';
+  const res = await fetch(`http://localhost:3000/api/${api}/user/${userid}`);
   return res.json();
 }
 

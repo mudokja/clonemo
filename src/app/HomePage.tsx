@@ -1,15 +1,17 @@
 'use client';
 
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
+import NavSide from "../components/NavSide";
 
 export default function HomeaPage() {
   return (
     <main>
-      <Box>
+      <Flex >
+        <NavSide/>
         <Box>
         엉엉 이게뭐야
         </Box>
-      </Box>
+      </Flex>
     </main>
   )
 }
