@@ -103,7 +103,7 @@ model UserProfile{
   user_id Int @unique
   custom_name String @unique @db.VarChar(12)
   custom_memo String? @db.VarChar(500)
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now()) @updatedAt
 
   @@id([user_id])
   @@index([user_id])
@@ -115,6 +115,7 @@ model AuthPassword{
   password String @db.Char(64)
   nacl String @db.VarChar(100)
   pv String? 
+  updated_at DateTime @updatedAt
   
   @@id([user_id])
   @@map("auth_password")
