@@ -19,6 +19,7 @@ model TopicTable{
   topic_type String
   topic_depiction String @db.VarChar(500)
   parent_topic Int?
+  created_by String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   deleted_by String?
@@ -29,8 +30,10 @@ model TopicTable{
 
 model PostTable {
   id        Int      @id @unique @default(autoincrement())
-  post_type Int
-  title String @db.VarChar(50)
+  post_type String
+  staff_id  String?
+  title String @db.VarChar(80)
+  short_title String? @db.VarChar(20)
   hidden Boolean  @default(false)
   is_edit Boolean @default(false)
   //is_ref Boolean @default(false)
@@ -51,7 +54,7 @@ model PostTable {
 model PostContent {
   id        Int      @id @default(autoincrement())
   post PostTable @relation(fields: [post_id], references: [id])
-  rep_id Int? @db.UnsignedTinyInt
+  rep_idx Int? @db.UnsignedTinyInt
   post_id  Int
   ip String? @db.VarChar(39)
   is_image Boolean
@@ -95,7 +98,7 @@ model PostImage{
   height Int?
   post_content_id Int //따로 외래키 설정 안하겠음
   topic_id Int
-  
+  @@index([post_content_id])
   @@map("post_image")
 }
 
