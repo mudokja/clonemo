@@ -15,7 +15,7 @@ datasource db {
 model TopicTable{ 
   id Int @id @default(autoincrement())
   idx String @unique
-  name String
+  name String @db.VarChar(50)
   topic_type String
   topic_depiction String @db.VarChar(500)
   parent_topic Int?
@@ -38,7 +38,7 @@ model PostTable {
   PostTable     String   @db.VarChar(200) @map("post_table")
   contents   PostContent[]
   //hit Int @default(0)
-  author_name String
+  author_name String @db.VarChar(50)
   author_id  Int?
   published DateTime @default(now())
   updated_at DateTime @updatedAt
