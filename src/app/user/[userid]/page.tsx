@@ -1,12 +1,13 @@
 
 async function getArtist(userid: any) {
-  const api=process.env.V_API
-  const res = await fetch(`http://localhost:3000/api/${api}/user/${userid}`);
+  const vapi=process.env.V_API
+  const port=process.env.PORT
+  const res = await fetch(`http://localhost:${port}/api/${vapi}/user/${userid}`);
   return res.json();
 }
 
 export default async function Page({params:{userid}}: any) :Promise<JSX.Element> {
-    // Forward fetched data to your Client Component
+    // 임시 api 테스트
     const user = await getArtist(userid)
     return (
       <><p>유저정보로딩</p>
