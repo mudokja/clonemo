@@ -33,7 +33,7 @@ export default function PostForm() {
     { defaultValues: { authorName: "이름없음" }}
   );
 
-  function validateTitle(value) {
+  function validateTitle(value: string | any[]) {
     if (!value) {
       return "제목은 비울 수 없습니다";
     } else if (value.length>80){
@@ -42,12 +42,12 @@ export default function PostForm() {
       return "URL은 제목에 포함 될 수 없습니다";
     } else return true;
   }
-  function validateName(value) {
+  function validateName(value: any) {
     if (!value) {
     
     } else return true;
   }
-  function validateContent(value) {
+  function validateContent(value: string | any[]) {
     if (!value) {
       return "본문을 작성해주세요";
     } else if (value.length<2){
