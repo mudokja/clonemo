@@ -55,7 +55,6 @@ const spacing = {
   },
 }
 console.log('테마읽힘')
-//망한것이 틀림없다 시간과 실력과 식사가 부족하다 배고프다
 const theme = extendTheme({config , breakpoints, ...spacing, 
   components: { Divider: dividerTheme },
 }) 

@@ -6,8 +6,8 @@ import PostForm from "../../../components/PostForm";
 
 export default function Page() {
   return (
-    <Box>
+    <Flex justifyContent={'center'} alignItems={'center'}>
       <PostForm/>
-    </Box>
+    </Flex>
   )
 }
