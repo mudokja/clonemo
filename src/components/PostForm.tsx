@@ -16,7 +16,7 @@ async function onSubmit(data: any)
 {
   try {
     const body = data
-    const res=await fetch(`http://localhost:3000/api/v1/post/page`, {
+    const res=await fetch(`/api/v1/post/page`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),

@@ -3,7 +3,7 @@ import React from "react";
 async function getArtist(userid: any) {
   const vapi=process.env.V_API
   const port=process.env.PORT
-  const res = await fetch(`http://localhost:${port}/api/${vapi}/user/${userid}`);
+  const res = await fetch(`/api/${vapi}/user/${userid}`);
   return res.json();
 }
 

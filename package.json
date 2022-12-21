@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "start-eco": "npm run build && pm2 reload ecosystem.config.js -p 3002"
+    "start-eco": "npm run build && pm2 reload ecosystem.config.js"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.3",
