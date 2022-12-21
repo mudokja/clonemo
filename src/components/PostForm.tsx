@@ -30,10 +30,10 @@ async function onSubmit(data: any)
 
 export default function PostForm() {
   const { handleSubmit, register, formState :{errors,isSubmitting, isDirty, isValid,dirtyFields }} = useForm(
-    { defaultValues: { authorName: "이름없음" }}
+    { defaultValues: { authorName: "이름없음", postTitle:"",postContent:"" }}
   );
 
-  function validateTitle(value: string | any[]) {
+  function validateTitle(value: string) {
     if (!value) {
       return "제목은 비울 수 없습니다";
     } else if (value.length>80){
@@ -42,12 +42,12 @@ export default function PostForm() {
       return "URL은 제목에 포함 될 수 없습니다";
     } else return true;
   }
-  function validateName(value: any) {
+  function validateName(value: string) {
     if (!value) {
     
     } else return true;
   }
-  function validateContent(value: string | any[]) {
+  function validateContent(value: string) {
     if (!value) {
       return "본문을 작성해주세요";
     } else if (value.length<2){
