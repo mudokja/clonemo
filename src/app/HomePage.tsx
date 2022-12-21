@@ -1,15 +1,14 @@
 'use client';
 
-import { Box } from "@chakra-ui/react";
-import ColorModeButton from "../components/ColorModeButton";
-import TopHeader from "../components/TopHeader";
+import { Box, Flex } from "@chakra-ui/react";
+import NavSide from "../components/NavSide";
 
 export default function HomeaPage() {
   return (
-    <Box>
-      <Box>
-        엉엉 이게뭐야
-      </Box>
-    </Box>
+      <Flex justifyContent={'center'} alignItems={'center'}>
+        <Box>
+          메인페이지
+        </Box>
+      </Flex>
   )
 }

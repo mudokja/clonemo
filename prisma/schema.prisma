@@ -9,46 +9,55 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model TopicTable{ 
-  id Int @id
+  id Int @id @default(autoincrement())
   idx String @unique
-  name String
+  name String @db.VarChar(50)
   topic_type String
-  topic_depiction String @db.VarChar(250)
-  parent_topic Int? @db.UnsignedTinyInt
+  topic_depiction String @db.VarChar(500)
+  parent_topic Int?
+  created_by String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  deleted_by String 
+  deleted_by String?
   deleted_at DateTime?
 
   @@map("topic_table")
  }
 
 model PostTable {
-  id        Int      @id @unique(sort: Desc) @default(autoincrement())
-  post_type Int
-  title String @db.VarChar(50)
+  id        Int      @id @unique @default(autoincrement())
+  post_type String
+  staff_id  String?
+  title String @db.VarChar(80)
+  short_title String? @db.VarChar(20)
   hidden Boolean  @default(false)
   is_edit Boolean @default(false)
   //is_ref Boolean @default(false)
   //ref_post Int?  //넣을시간 없을듯
-  PostTable     String   @db.VarChar(200) @map("post_table")
+  //PostTable     String   @db.VarChar(200) @map("post_table")
   contents   PostContent[]
-  author_name String
+  //hit Int @default(0) // 갱신 최적화 어떻게 해야하는지 어려움
+  author_name String? @db.VarChar(50)
   author_id  Int?
   published DateTime @default(now())
   updated_at DateTime @updatedAt
   //tag String @db.Text @index()
   
+  @@index([title])
   @@map("post_table")
 }
 
 model PostContent {
   id        Int      @id @default(autoincrement())
   post PostTable @relation(fields: [post_id], references: [id])
-  rep_id Int? @db.UnsignedTinyInt
+  author_name String? @db.VarChar(50)
+  author_id  Int?
+  staff_id  String?
+  rep_idx Int? @db.UnsignedTinyInt
   post_id  Int
   ip String? @db.VarChar(39)
   is_image Boolean
@@ -59,12 +68,11 @@ model PostContent {
   edited DateTime @updatedAt
   deleted_by String 
   deleted_at DateTime?
-  hit Int @default(0)
   like Int @default(0)
-  //favor Int?
   //score Float @default(0.00) //시간에따른 감소
-  //spam_level Int? //스팸단어 필터링에 따른
+  //spam_level Int? //스팸단어 필터링에 따른 감소 같은건 만들시간없는 불필요한 필드들
 
+  @@index([post_id])
   @@fulltext([content])
   @@map("post_content")
 }
@@ -77,6 +85,7 @@ model User {
   updated_at DateTime @updatedAt
   deleted_at DateTime?
 
+  @@index([user_id])
   @@map("user")
 }
 
@@ -92,7 +101,7 @@ model PostImage{
   height Int?
   post_content_id Int //따로 외래키 설정 안하겠음
   topic_id Int
-  
+  @@index([post_content_id])
   @@map("post_image")
 }
 
@@ -100,19 +109,22 @@ model UserProfile{
   user_id Int @unique
   custom_name String @unique @db.VarChar(12)
   custom_memo String? @db.VarChar(500)
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now()) @updatedAt
 
   @@id([user_id])
+  @@index([user_id])
   @@map("user_profile")
 }
 
-// model AuthPassword{
-//   //idx Int @default(autoincrement())
-//   user_id Int @unique
-//   password String @db.Char(64)
-//   //nacl ㄴ
-//   //pv
+model AuthPassword{
+  user_id Int @unique
+  password String @db.Char(64)
+  nacl String @db.VarChar(100)
+  pv String? 
+  updated_at DateTime @updatedAt
   
-//   @@id([user_id])
-//   @@map("auth_password")
-// } //기본기능 완성까지 보류
+  @@id([user_id])
+  @@map("auth_password")
+}
+
+//view 사용 포기
