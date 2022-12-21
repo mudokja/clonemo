@@ -38,7 +38,7 @@ model PostTable {
   is_edit Boolean @default(false)
   //is_ref Boolean @default(false)
   //ref_post Int?  //넣을시간 없을듯
-  PostTable     String   @db.VarChar(200) @map("post_table")
+  //PostTable     String   @db.VarChar(200) @map("post_table")
   contents   PostContent[]
   //hit Int @default(0) // 갱신 최적화 어떻게 해야하는지 어려움
   author_name String? @db.VarChar(50)

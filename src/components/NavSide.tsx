@@ -21,7 +21,7 @@ const NavSide=()=>{
           <DrawerBody>
           <Flex width={['2xs','xs','sm']} height={'md'} direction={"column"} borderRight={"1px"}>
             <Text fontSize={['sm','md']}>
-            뭔가있을예정
+            공지사항(예정)
             </Text>
             <Divider variant={'nav1'}/>
             <Text fontSize={['sm','md']}>
@@ -31,7 +31,6 @@ const NavSide=()=>{
             <Text fontSize={['sm','md']}>
             주제리스트(예정)
             </Text>
-            이걸로 만들면 안되는거였는데...
             </Flex>
           </DrawerBody>
         </DrawerContent>

@@ -7,7 +7,7 @@ export default function HomeaPage() {
   return (
       <Flex justifyContent={'center'} alignItems={'center'}>
         <Box>
-          엉엉 이게뭐야
+          메인페이지
         </Box>
       </Flex>
   )
