@@ -40,8 +40,8 @@ model PostTable {
   //ref_post Int?  //넣을시간 없을듯
   PostTable     String   @db.VarChar(200) @map("post_table")
   contents   PostContent[]
-  //hit Int @default(0)
-  author_name String @db.VarChar(50)
+  //hit Int @default(0) // 갱신 최적화 어떻게 해야하는지 어려움
+  author_name String? @db.VarChar(50)
   author_id  Int?
   published DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -54,6 +54,9 @@ model PostTable {
 model PostContent {
   id        Int      @id @default(autoincrement())
   post PostTable @relation(fields: [post_id], references: [id])
+  author_name String? @db.VarChar(50)
+  author_id  Int?
+  staff_id  String?
   rep_idx Int? @db.UnsignedTinyInt
   post_id  Int
   ip String? @db.VarChar(39)
@@ -123,3 +126,5 @@ model AuthPassword{
   @@id([user_id])
   @@map("auth_password")
 }
+
+//view 사용 포기
