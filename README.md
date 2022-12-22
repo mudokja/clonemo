@@ -6,7 +6,7 @@ yarn dev
 ---
 2022/12/22 이후 작성
 ---
-마지막 마감 커밋은 [lastdeadline-commit]<https://github.com/mudokja/clonemo/tree/lastdeadline-commit> 입니다.
+마지막 마감 커밋은 [lastdeadline-commit](https://github.com/mudokja/clonemo/tree/lastdeadline-commit) 입니다.
 
 해당 커밋에서 사용된 주요 라이브러리와 버전은  
 next: 13.0.8-canary.0  
